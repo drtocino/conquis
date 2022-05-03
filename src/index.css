@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    transition: color 0.4s;
+}
+
+aside{
+    transition: width 1s;
+}
+.sidebar{
+    transition: margin 1s;
+}
+span{
+    transition: width 1s;
+}
+.arrow{
+    transition: transform 1s;
+}
+/* .settings{
+    transition: height 3s;
+    -moz-transition: height 3s ;
+} */
