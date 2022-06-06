@@ -76,7 +76,7 @@ const Areas = () => {
                         </div>
                     </div>
                     </Link>
-                    <Link to={'recreativas'}>
+                    <Link to={'AR'}>
                     <div className='bg-green-300 md:h-full md:min-h-[5rem] h-24 max-h-24 rounded'>
                         <div className='grid grid-cols-3 h-full'>
                             <div className='bg-green-600 p-2 flex items-center rounded-l h-full'>

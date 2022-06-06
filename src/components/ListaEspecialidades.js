@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Address from '../Address'
 
 const ListaEspecialidades = (props) => {
 
@@ -9,10 +10,10 @@ const ListaEspecialidades = (props) => {
 
     useEffect(() => {
         //console.log(props)
-        axios.get(`http://192.168.1.7:3001/getEspecialidades/${props.area}`).then((res) => {
+        axios.get(`${Address}/getEspecialidades/${props.area}`).then((res) => {
             setEspecialidades(res.data)
         })
-        axios.get(`http://192.168.1.7:3001/getAreaByAcronim/${props.area}`).then((res) => {
+        axios.get(`${Address}/getAreaByAcronim/${props.area}`).then((res) => {
             //console.log(res.data)
             setArea(res.data)
         })

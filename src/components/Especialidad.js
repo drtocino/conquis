@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Address from '../Address';
 
 const Especialidad = (props) => {
 
@@ -10,11 +11,14 @@ const Especialidad = (props) => {
     const [requisitos, setRequisitos] = useState([])
 
     useEffect(() => {
-        axios.get(`http://192.168.1.7:3001/getEspecialidad/${especialidad}`).then((res) => {
+        axios.get(`${Address}/getEspecialidad/${especialidad}`).then((res) => {
             setDatosEspecialidad(res.data);
+            setRequisitos(res.data.requisitos)
+            console.log(res.data)
         })
-        axios.get(`http://192.168.1.7:3001/getRequisitosByEsp/${especialidad}`).then((res) => {
+        axios.get(`${Address}/getRequisitosByEsp/${especialidad}`).then((res) => {
             setRequisitos(res.data);
+            //console.log(res.data)
         })
     }, [])
     
