@@ -29,20 +29,20 @@ const Especialidad = (props) => {
             <h1 className='text-2xl font-bold'>{datosEspecialidad.nombre}</h1>
             <div className='grid grid-cols-1 min-h-[8rem] sm:grid-cols-4 gap-1 sm:gap-2 text-white'>
                 <div className='col-span-3 grid grid-cols-3 md:grid-cols-6 gap-1 sm:gap-2 min-h-[8rem]  '>
-                    <div className='bg-purple-900 flex items-center justify-center'><h1>a</h1></div>
+                    <div className='bg-purple-900 flex items-center justify-center font-bold'><h1>CS</h1></div>
                     <div className='bg-purple-700 col-span-2 md:col-span-5 px-2 flex items-center'>
                         <h1>{datosEspecialidad.nombre}</h1>
                     </div>
                     <div className='bg-purple-700 min-w-[1rem] text-white items-center flex justify-center font-bold'>
                         <h1>{String(datosEspecialidad.numero).padStart(3,"0")}</h1>
                     </div>
-                    <div className='bg-purple-400 text-purple-800 items-center flex justify-center font-bold'>
+                    <div className='bg-purple-400 text-purple-900 items-center flex justify-center font-bold'>
                         <div className='text-center'>
                             <h1>Nivel</h1>
                             <h1>{datosEspecialidad.nivel}</h1>
                         </div>
                     </div>
-                    <div className='bg-purple-400 text-purple-800 items-center flex justify-center font-bold'>
+                    <div className='bg-purple-400 text-purple-900 items-center flex justify-center font-bold'>
                         <div className='text-center'>
                             <h1>Año</h1>
                             <h1>{datosEspecialidad.anio}</h1>
@@ -60,7 +60,7 @@ const Especialidad = (props) => {
 
                 </div>
             </div>
-            <h1 className='font-bold'>REQUISITOS</h1>
+            <h1 className='font-bold mt-3'>REQUISITOS</h1>
             {
                 requisitos.map((val) => {
                     return (
