@@ -1,28 +1,48 @@
 import axios from 'axios';
+import { collection, collectionGroup, getDocs, query, where } from 'firebase/firestore/lite';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Address from '../Address';
+import { db } from '../database/firebase';
 
 const Especialidad = (props) => {
 
-    const {especialidad} = useParams();
+    const {especialidad,nombre} = useParams();
 
     const [datosEspecialidad, setDatosEspecialidad] = useState({})
     const [requisitos, setRequisitos] = useState([])
+    const [area, setArea] = useState({})
 
     useEffect(() => {
-        axios.get(`${Address}/getEspecialidad/${especialidad}`).then((res) => {
-            setDatosEspecialidad(res.data);
-            setRequisitos(res.data.requisitos)
-            console.log(res.data)
-        })
-        axios.get(`${Address}/getRequisitosByEsp/${especialidad}`).then((res) => {
-            setRequisitos(res.data);
-            //console.log(res.data)
-        })
+        getCategoria(db)
     }, [])
-    
 
+    const getCategoria = async (firestore) => {
+        const queryCategorias = query(collection(firestore, "honorCategories"), where("code", "==", nombre));
+        const categoriasSnapshot = await getDocs(queryCategorias);
+        const categoriasList = categoriasSnapshot.docs.map(doc => doc.data());
+        if(categoriasList.length > 0){
+            setArea(categoriasList[0])
+            getRequirements(firestore,categoriasList[0].id,especialidad)
+        }
+        console.log(categoriasList);
+
+    }
+
+    const getRequirements = async (firestore, cat, honor) => {
+        // const queryEspecialidades = query(collection(firestore, "honorCategorieshonors"), where("code", "==", props.area));
+        const especialidadesSnapshot = await getDocs(collection(firestore,"honorCategories/"+cat+"/honors/"+honor+"/requirements"));
+        const especialidadesList = especialidadesSnapshot.docs.map(doc => {
+            return {...doc.data(),id: doc.id}
+        });
+        console.log(especialidadesList)
+        setRequisitos(especialidadesList);
+    }
+    
+    // const getRequirements = async () => {
+    //     query(collectionGroup(firestore,"honors"),)
+    //     const requirementsSnapshot = await getDocs(collection(firestore,"honorCategories/"+id+"/honors"));
+    // }
 
     return (
         <div className=''>
@@ -64,9 +84,9 @@ const Especialidad = (props) => {
             {
                 requisitos.map((val) => {
                     return (
-                        <div key={val._id} >
-                            <span className='font-bold'>{val.numero}. </span>
-                            <span>{val.instruccion}</span>
+                        <div key={val.id} >
+                            <span className='font-bold'>{val.number}. </span>
+                            <span>{val.instruction}</span>
                         </div>
                     )
                 })

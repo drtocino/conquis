@@ -6,7 +6,7 @@ const Areas = () => {
         <div className=''>
                 <h1>Areas</h1>
                 <div className='grid grid-cols-1 min-w-[14rem] md:grid-cols-2 lg:grid-cols-3 gap-2 text-white text-xs md:text-base text-center'>
-                    <Link className='' to={'adra'}>
+                    <Link className='' to={'AD'}>
                     <div className='bg-indigo-400 md:h-full md:min-h-[5rem] h-24 max-h-24 rounded'>
                         <div className='grid grid-cols-3 h-full'>
                             <div className='bg-indigo-700 p-2 flex items-center rounded-l h-full'>
@@ -20,7 +20,7 @@ const Areas = () => {
                         </div>
                     </div>
                     </Link>
-                    <Link to={'adra'}>
+                    <Link to={'HM'}>
                     <div className='bg-sky-300 md:h-full md:min-h-[5rem] h-24 max-h-24 rounded'>
                         <div className='grid grid-cols-3 h-full'>
                             <div className='bg-sky-500 p-2 flex items-center rounded-l h-full'>
@@ -34,7 +34,7 @@ const Areas = () => {
                         </div>
                     </div>
                     </Link>
-                    <Link to={'agricolas'}>
+                    <Link to={'AA'}>
                     <div className='bg-[#c9a48f] md:h-full md:min-h-[5rem] h-24 max-h-24 rounded'>
                         <div className='grid grid-cols-3 h-full'>
                             <div className='bg-[#331504] p-2 flex items-center rounded-l h-full'>
@@ -48,7 +48,7 @@ const Areas = () => {
                         </div>
                     </div>
                     </Link>
-                    <Link to={'misioneras'}>
+                    <Link to={'AM'}>
                     <div className='bg-blue-400 md:h-full md:min-h-[5rem] h-24 max-h-24 rounded'>
                         <div className='grid grid-cols-3 h-full'>
                             <div className='bg-blue-700 p-2 flex items-center overflow-auto rounded-l h-full'>
@@ -62,7 +62,7 @@ const Areas = () => {
                         </div>
                     </div>
                     </Link>
-                    <Link to={'profesionales'}>
+                    <Link to={'AP'}>
                     <div className='bg-red-400 md:h-full md:min-h-[5rem] h-24 max-h-24 rounded'>
                         <div className='grid grid-cols-3 h-full'>
                             <div className='bg-red-700 p-2 flex items-center rounded-l h-full'>
@@ -105,7 +105,7 @@ const Areas = () => {
                         </div>
                     </div>
                     </Link>
-                    <Link to={'naturaleza'}>
+                    <Link to={'EN'}>
                     <div className='bg-gray-300 md:h-full md:min-h-[5rem] h-24 max-h-24 rounded'>
                         <div className='grid grid-cols-3 h-full'>
                             <div className='bg-gray-800 p-2 flex items-center rounded-l-sm h-full'>
@@ -119,7 +119,7 @@ const Areas = () => {
                         </div>
                     </div>
                     </Link>
-                    <Link to={'domesticas'}>
+                    <Link to={'HD'}>
                     <div className='bg-yellow-500 md:h-full md:min-h-[5rem] h-24 max-h-24 rounded'>
                         <div className='grid grid-cols-3 h-full'>
                             <div className='bg-amber-700 p-2 flex items-center rounded-l-sm h-full'>
