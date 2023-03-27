@@ -11,3 +11,9 @@ Hope this goes to somewhere
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+## Applied tech
+
+* React
+* Firebase
+* Tailwind
