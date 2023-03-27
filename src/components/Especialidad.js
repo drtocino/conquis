@@ -12,6 +12,8 @@ const Especialidad = (props) => {
     const [datosEspecialidad, setDatosEspecialidad] = useState({})
     const [requisitos, setRequisitos] = useState([])
     const [area, setArea] = useState({})
+    const [color, setColor] = useState("")
+    const [colorPrimary, setColorPrimary] = useState("bg-gray-800")
 
     useEffect(() => {
         getCategoria(db)
@@ -23,10 +25,13 @@ const Especialidad = (props) => {
         const categoriasList = categoriasSnapshot.docs.map(doc => doc.data());
         if(categoriasList.length > 0){
             console.log(categoriasList[0])
+            console.log(categoriasList[0].color)
             if(!categoriasList[0].color){
                 console.log("slate")
                 categoriasList[0].color = "gray"
-            } 
+            }
+            setColor(categoriasList[0].color);
+            setColorPrimary("bg-"+categoriasList[0].color+"-800");
             setArea(categoriasList[0])
             getHonor(firestore,categoriasList[0].id,especialidad)
             getRequirements(firestore,categoriasList[0].id,especialidad)
@@ -39,6 +44,7 @@ const Especialidad = (props) => {
         if(docSnapshot.exists()){
             console.log(docSnapshot.data())
             setDatosEspecialidad(docSnapshot.data());
+            
         }
     }
 
@@ -58,20 +64,20 @@ const Especialidad = (props) => {
             <h1 className='text-2xl font-bold'>{datosEspecialidad.nombre}</h1>
             <div className='grid grid-cols-1 min-h-[8rem] sm:grid-cols-4 gap-1 sm:gap-2 text-white'>
                 <div className='col-span-3 grid grid-cols-3 md:grid-cols-6 gap-1 sm:gap-2 min-h-[8rem]'>
-                    <div className={`bg-${area.color}-800 flex items-center justify-center font-bold`}><h1>{area.code}</h1></div>
-                    <div className={`bg-${area.color}-700 col-span-2 md:col-span-5 px-3 flex items-center`}>
+                    <div className={`bg-${color}-800 flex items-center justify-center font-bold`}><h1>{area.code}</h1></div>
+                    <div className={`bg-${color}-700 col-span-2 md:col-span-5 px-3 flex items-center`}>
                         <h1 className='text-white font-semibold'>{datosEspecialidad.name}</h1>
                     </div>
                     <div className={`bg-${area.color}-700 min-w-[1rem] text-white items-center flex justify-center font-bold`}>
                         <h1>{String(datosEspecialidad.number).padStart(3,"0")}</h1>
                     </div>
-                    <div className={`bg-${area.color}-400 text-${area.color}-900 items-center flex justify-center font-bold`}>
+                    <div className={`bg-${area.color}-300 text-${area.color}-900 items-center flex justify-center font-bold`}>
                         <div className='text-center'>
                             <h1>Nivel</h1>
                             <h1>{datosEspecialidad.level}</h1>
                         </div>
                     </div>
-                    <div className={`bg-${area.color}-400 text-${area.color}-900 items-center flex justify-center font-bold`}>
+                    <div className={`bg-${area.color}-300 text-${area.color}-900 items-center flex justify-center font-bold`}>
                         <div className='text-center'>
                             <h1>Año</h1>
                             <h1>{datosEspecialidad.year}</h1>
