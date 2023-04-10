@@ -7,16 +7,14 @@ const Login = () => {
     // const REACT_GOOGLE_AUTH = "965906568095-71mcrc2ge14hk8pp7ln65v4n5kb7cpdf.apps.googleusercontent.com";
     return (
     <div>
-        <GoogleOAuthProvider clientId="965906568095-71mcrc2ge14hk8pp7ln65v4n5kb7cpdf.apps.googleusercontent.com">
-                <GoogleLogin
-          onSuccess={credentialResponse => {
-            console.log(credentialResponse);
-          }}
-          onError={() => {
-            console.log('Login Failed');
-          }}
-        />
-        </GoogleOAuthProvider>
+      <GoogleLogin
+        onSuccess={credentialResponse => {
+          console.log(credentialResponse);
+        }}
+        onError={() => {
+          console.log('Login Failed');
+        }}
+      />
     </div>
     )
 }

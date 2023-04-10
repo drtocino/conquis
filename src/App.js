@@ -4,7 +4,7 @@ import './App.css';
 import Actividades from "./components/Actividades";
 import Dashboard from "./components/Dashboard";
 import { MdDashboard, MdFactCheck, MdOutlineArrowBackIosNew, MdPerson, MdSettings } from 'react-icons/md'
-import { RiBarChartHorizontalFill, RiCompassFill, RiFlagFill } from 'react-icons/ri'
+import { RiBarChartHorizontalFill, RiCompassFill, RiFlagFill, RiQuestionMark, RiUser3Fill, RiUser4Fill } from 'react-icons/ri'
 import Avances from "./components/Avances";
 import {ReactComponent as ConquisLogo} from './assets/Conquis.svg'
 import Clubes from "./components/Clubes";
@@ -12,31 +12,20 @@ import {useCookies} from 'react-cookie'
 import Especialidades from "./components/Especialidades";
 import Login from "./components/Login";
 import Especialidad from "./components/Especialidad";
+import Router from "./Router";
 
 function App() {
-
-  // const handleKeyPress = (event) => {
-  //   if (event.shiftKey === true){
-  //     if(event.key === "S"){
-  //       hideShow();
-  //     }
-  //     console.log(`Key pressed : ${event.key}`)
-  //   }
-  // }
 
   useEffect(() => {
     cookie.sidebar === undefined ? setCookie("sidebar",sideBarOpen,{sameSite: "strict",secure: true}) : setSideBarOpen(cookie.sidebar === "true" ? true : false );
     cookie.theme === undefined ? setCookie("theme", "light",{sameSite: "strict",secure:true}) : console.log("asd");
-    // document.addEventListener("keydown",handleKeyPress)
-    // return () => {
-    //   document.addEventListener("keydown",handleKeyPress)
-    // }
   }, [/* handleKeyPress */])
 
   const [cookie,setCookie] = useCookies(["sidebar","theme"]);
   const [sideBarOpen, setSideBarOpen] = useState(cookie.sidebar === undefined ? true : cookie.sidebar === "true" ? true : false );
   const [settingsOpen, setSettingsOpen] = useState(false);
-
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [options, setOptions] = useState(false);
   
 
   const hideShow = () => {
@@ -56,13 +45,29 @@ function App() {
 
   return (
     <div className={cookie.theme}>
+      <div className="bg-gray-300 dark:bg-gray-900/95 dark:text-white flex flex-wrap justify-between" >
+        <Link className="flex items-center w-64 pl-2" to={"/"}>
+          <ConquisLogo className={`-scale-[0.4] -m-2`}/>
+          <span className={`self-center text-xl font-semibold`}>Conquis</span>
+        </Link>
+        <div className="flex items-center">
+          <div className="flex mx-3" >
+            <RiQuestionMark className={`rounded-full bg-slate-200 dark:bg-slate-800 p-1 my-2`} size={30} />
+            <span></span>
+          </div>
+          <button className="flex mx-3" onClick={() => setOptions(!options)} >
+            <RiUser3Fill className={`rounded-full bg-slate-200 dark:bg-slate-800 p-1 my-2`} size={30} />
+            <span></span>
+          </button>
+          <div className={`${options ? "absolute" : "hidden"} bg-slate-800 top-14 right-1 w-64 px-3 py-2 rounded flex flex-col gap-2`}>
+            <span>Login</span>
+            <span>Contacto</span>
+          </div>
+        </div>
+      </div>
       <div className="bg-gray-50 text-slate-900 dark:bg-gray-900 dark:text-white">
         <aside className={`${sideBarOpen ? "w-64" : "w-[4.5rem]"} h-full bg-gray-300 dark:bg-gray-800 fixed `} >
-          <Link className="flex items-center -mb-4 " to={"/"}>
-            <ConquisLogo className={`${sideBarOpen ? "" : "mx-auto"} -scale-[0.4]`}/>
-            <span className={`${sideBarOpen ? "self-center text-xl font-semibold whitespace-nowrap" : "hidden"} `}>Conquis</span>
-          </Link>
-          <button onClick={() => hideShow()} className="bg-slate-400/80 dark:bg-slate-700 absolute -right-4 rounded-full px-2 py-2"><MdOutlineArrowBackIosNew className={`${sideBarOpen ? "rotate-0" : "rotate-[540deg]"} arrow`} /></button>
+          
           <div className="overflow-y-auto py-4 px-3 bg-gray-300 dark:bg-gray-800">
             <ul className="space-y-2">
               <li className="h-10">
@@ -71,6 +76,7 @@ function App() {
                   <span className={`${sideBarOpen ? "ml-3" : "ml-0 hidden"}`}>Dashboard</span>
                 </Link>
               </li>
+              <button onClick={() => hideShow()} className="bg-slate-400/80 dark:bg-slate-700 absolute -right-4 rounded-full px-2 py-2"><MdOutlineArrowBackIosNew className={`${sideBarOpen ? "rotate-0" : "rotate-[540deg]"} arrow`} /></button>
               <li className="h-10">
                 <Link className="flex items-center p-2 text-base h-full rounded-lg hover:bg-gray-400 dark:hover:bg-gray-700" to={"actividades"}>
                   <MdFactCheck className={`${sideBarOpen ? "" : "mx-auto"}`}/>
@@ -125,16 +131,7 @@ function App() {
           </div>
         </aside>
         <div className={`${sideBarOpen ? "ml-64" : "ml-[4.5rem]"} min-h-screen sidebar pl-6 p-3`}>
-          <Routes  >
-            <Route path="/" element={<Dashboard/>} />
-            <Route path="actividades" element={<Actividades/>} />
-            <Route path="avances" element={<Avances />} />
-            <Route path="clubes" element={<Clubes />} />
-            <Route path="especialidades" element={<Especialidades />} />
-            <Route path="especialidades/:nombre" element={<Especialidades />} />
-            <Route path="especialidades/:nombre/:especialidad" element={<Especialidad />} />
-            <Route path="login" element={<Login />} />
-          </Routes>
+          <Router/>
         </div>
       </div>
     </div>

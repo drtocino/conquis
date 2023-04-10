@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import {CookiesProvider} from 'react-cookie'
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <CookiesProvider>
+    <GoogleOAuthProvider clientId="965906568095-71mcrc2ge14hk8pp7ln65v4n5kb7cpdf.apps.googleusercontent.com">
   <BrowserRouter >
     <App />
   </BrowserRouter>
+  </GoogleOAuthProvider>
   </CookiesProvider>
 );
 
